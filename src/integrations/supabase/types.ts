@@ -149,6 +149,44 @@ export type Database = {
           },
         ]
       }
+      packing_items: {
+        Row: {
+          category: string
+          created_at: string
+          done: boolean
+          id: string
+          title: string
+          trip_id: string
+          user_id: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          done?: boolean
+          id?: string
+          title: string
+          trip_id: string
+          user_id?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          done?: boolean
+          id?: string
+          title?: string
+          trip_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "packing_items_trip_id_fkey"
+            columns: ["trip_id"]
+            isOneToOne: false
+            referencedRelation: "trips"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       trips: {
         Row: {
           budget: number

@@ -16,3 +16,11 @@ describe("trip utils", () => {
     expect(isPastTrip("2026-11-19", today)).toBe(false);
   });
 });
+
+import { packingProgress } from "./trip-utils";
+describe("packing progress", () => {
+  it("is the share of checked items, 0 when empty", () => {
+    expect(packingProgress([{ done: true }, { done: false }, { done: false }, { done: true }]).pct).toBe(50);
+    expect(packingProgress([]).pct).toBe(0);
+  });
+});

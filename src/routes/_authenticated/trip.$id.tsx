@@ -11,6 +11,7 @@ import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { PackingList } from "@/components/PackingList";
 import { supabase } from "@/integrations/supabase/client";
 import { activitiesQuery, bookingsQuery, expensesQuery, must, tripQuery, type Activity, type Trip } from "@/lib/trips-api";
 import { BOOKING_KINDS, CATEGORIES, countdownLabel, formatDayLong, formatEur, formatRange, toDayString, tripDays } from "@/lib/trip-utils";
@@ -66,14 +67,16 @@ function TripPage() {
         </div>
       </header>
       <Tabs defaultValue="itinerariu" className="mx-auto max-w-xl px-4">
-        <TabsList className="sticky top-0 z-10 -mx-4 mt-0 grid h-14 w-[calc(100%+2rem)] grid-cols-3 rounded-none border-b bg-background/95 px-4 backdrop-blur">
+        <TabsList className="sticky top-0 z-10 -mx-4 mt-0 grid h-14 w-[calc(100%+2rem)] grid-cols-4 rounded-none border-b bg-background/95 px-4 backdrop-blur">
           <TabsTrigger value="itinerariu" className="h-10 rounded-xl">Itinerariu</TabsTrigger>
           <TabsTrigger value="rezervari" className="h-10 rounded-xl">Rezervări</TabsTrigger>
           <TabsTrigger value="buget" className="h-10 rounded-xl">Buget</TabsTrigger>
+          <TabsTrigger value="bagaje" className="h-10 rounded-xl">Bagaje</TabsTrigger>
         </TabsList>
         <TabsContent value="itinerariu" className="pt-4"><Itinerary trip={trip} /></TabsContent>
         <TabsContent value="rezervari" className="pt-4"><Bookings trip={trip} /></TabsContent>
         <TabsContent value="buget" className="pt-4"><Budget trip={trip} /></TabsContent>
+        <TabsContent value="bagaje" className="pt-4"><PackingList tripId={trip.id} /></TabsContent>
       </Tabs>
     </div>
   );
@@ -362,7 +365,7 @@ function Budget({ trip }: { trip: Trip }) {
           <div className="space-y-2"><Label htmlFor="ea">Sumă (EUR)</Label><Input id="ea" required autoFocus type="number" inputMode="decimal" min="0" step="0.01" className="h-14 text-2xl" value={f.amount} onChange={(e) => setF({ ...f, amount: e.target.value })} /></div>
           <div className="space-y-2">
             <Label>Categorie</Label>
-            <div className="grid grid-cols-3 gap-2">
+            <div className="grid grid-cols-4 gap-2">
               {CATEGORIES.map((c) => (
                 <button type="button" key={c.value} onClick={() => setF({ ...f, category: c.value })}
                   className={`rounded-xl border px-2 py-2.5 text-sm ${f.category === c.value ? "border-primary bg-primary text-primary-foreground" : "bg-background"}`}>

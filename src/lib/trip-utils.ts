@@ -67,3 +67,11 @@ export function countdownLabel(start: string, end: string, today = new Date()) {
   if (!isPastTrip(end, today)) return "în desfășurare";
   return "încheiată";
 }
+
+export const PACKING_CATEGORIES = ["Documente", "Haine", "Electronice", "Trusă medicală/Cosmetice"];
+
+export function packingProgress(items: { done: boolean }[]) {
+  const total = items.length;
+  const done = items.filter((i) => i.done).length;
+  return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
+}

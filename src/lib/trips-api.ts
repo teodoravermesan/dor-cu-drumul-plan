@@ -42,3 +42,10 @@ export const expensesQuery = (id: string) =>
       must<Expense[]>(supabase.from("expenses").select("*").eq("trip_id", id).order("spent_on", { ascending: false })),
   });
 export { must };
+export type PackingItem = Tables<"packing_items">;
+export const packingQuery = (id: string) =>
+  queryOptions({
+    queryKey: ["packing", id],
+    queryFn: () =>
+      must<PackingItem[]>(supabase.from("packing_items").select("*").eq("trip_id", id).order("created_at")),
+  });
