@@ -33,3 +33,4 @@ use the editor.
 - Data access uses the browser Supabase client with per-user RLS (`user_id = auth.uid()`) on every table — simplest path, no server secrets needed.
 - Signed-in pages live under `src/routes/_authenticated/`; date math lives in `src/lib/trip-utils.ts` (tested) so day lists and countdowns stay consistent.
 - The demo trip is created by a trigger on new accounts, not on page load.
+- App-shell offline support uses vite-plugin-pwa generateSW and only src/lib/pwa.ts registers it; preview guards prevent stale editor caches, while NetworkFirst navigation caches only the interface, not private API data.

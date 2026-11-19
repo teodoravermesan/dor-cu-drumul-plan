@@ -1,0 +1,2 @@
+- [x] Add installable app metadata, matching icons and guarded offline interface caching.
+- [x] Verify installation button states on desktop/mobile, preview safety and existing trip tests.
