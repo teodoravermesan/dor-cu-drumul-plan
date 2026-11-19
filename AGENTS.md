@@ -28,3 +28,8 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+## Project rules
+- Data access uses the browser Supabase client with per-user RLS (`user_id = auth.uid()`) on every table — simplest path, no server secrets needed.
+- Signed-in pages live under `src/routes/_authenticated/`; date math lives in `src/lib/trip-utils.ts` (tested) so day lists and countdowns stay consistent.
+- The demo trip is created by a trigger on new accounts, not on page load.
