@@ -24,3 +24,16 @@ describe("packing progress", () => {
     expect(packingProgress([]).pct).toBe(0);
   });
 });
+
+import { convertAmount, PACKING_CATEGORIES } from "./trip-utils";
+describe("currency", () => {
+  it("converts original amount with the stored rate", () => {
+    expect(convertAmount(837, 0.2007)).toBe(167.99);
+    expect(convertAmount(160, 1)).toBe(160);
+  });
+});
+describe("packing categories", () => {
+  it("includes Diverse", () => {
+    expect(PACKING_CATEGORIES).toContain("Diverse");
+  });
+});

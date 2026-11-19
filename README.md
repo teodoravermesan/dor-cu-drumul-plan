@@ -11,7 +11,7 @@ Aplicație web pentru planificarea călătoriilor: itinerarii pe zile, rezervăr
 - **Itinerariu** – zilele călătoriei generate automat; pentru fiecare zi poți adăuga și reordona activități (oră, titlu, locație, notițe).
 - **Rezervări** – zboruri, cazări și mașini închiriate, cu furnizor, cod de rezervare, dată, preț și link.
 - **Buget** – cheltuieli pe categorii și o bară de progres pentru totalul cheltuit față de buget.
-- **Bagaje** – checklist pe categorii (Documente, Haine, Electronice, Trusă medicală/Cosmetice), cu progresul pregătirilor.
+- **Bagaje** – checklist pe categorii (Documente, Haine, Electronice, Trusă medicală/Cosmetice, Diverse), cu progresul pregătirilor.
 
 ## Tehnologii
 

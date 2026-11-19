@@ -68,10 +68,41 @@ export function countdownLabel(start: string, end: string, today = new Date()) {
   return "încheiată";
 }
 
-export const PACKING_CATEGORIES = ["Documente", "Haine", "Electronice", "Trusă medicală/Cosmetice"];
+export const PACKING_CATEGORIES = ["Documente", "Haine", "Electronice", "Trusă medicală/Cosmetice", "Diverse"];
 
 export function packingProgress(items: { done: boolean }[]) {
   const total = items.length;
   const done = items.filter((i) => i.done).length;
   return { done, total, pct: total ? Math.round((done / total) * 100) : 0 };
+}
+
+export const CURRENCIES = ["EUR", "RON", "USD", "GBP", "CHF", "HUF"] as const;
+
+export function formatMoney(n: number, currency = "EUR") {
+  return new Intl.NumberFormat("ro-RO", { style: "currency", currency, maximumFractionDigits: 2, minimumFractionDigits: 0 }).format(n);
+}
+
+/** Amount in main currency, rounded to cents. `rate` = value of 1 unit of the original currency. */
+export function convertAmount(amount: number, rate: number) {
+  return Math.round(amount * rate * 100) / 100;
+}
+
+/** Daily ECB rate via Frankfurter; future dates fall back to the latest rate. */
+export async function fetchRate(from: string, to: string, day: string, today = toDayString(new Date())): Promise<number> {
+  if (from === to) return 1;
+  const when = day > today ? "latest" : day;
+  const r = await fetch(`https://api.frankfurter.dev/v1/${when}?from=${from}&to=${to}`);
+  if (!r.ok) throw new Error("Nu am putut obține cursul valutar.");
+  const j = (await r.json()) as { rates?: Record<string, number> };
+  const v = j.rates?.[to];
+  if (!v) throw new Error("Curs indisponibil.");
+  return v;
+}
+
+/** ISO timestamp -> value for <input type="datetime-local">. */
+export function toLocalInput(iso: string | null) {
+  if (!iso) return "";
+  const d = new Date(iso);
+  const p = (n: number) => String(n).padStart(2, "0");
+  return `${toDayString(d)}T${p(d.getHours())}:${p(d.getMinutes())}`;
 }

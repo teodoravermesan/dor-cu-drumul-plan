@@ -65,6 +65,7 @@ export type Database = {
         Row: {
           code: string | null
           created_at: string
+          ends_at: string | null
           id: string
           kind: string
           link: string | null
@@ -77,6 +78,7 @@ export type Database = {
         Insert: {
           code?: string | null
           created_at?: string
+          ends_at?: string | null
           id?: string
           kind?: string
           link?: string | null
@@ -89,6 +91,7 @@ export type Database = {
         Update: {
           code?: string | null
           created_at?: string
+          ends_at?: string | null
           id?: string
           kind?: string
           link?: string | null
@@ -113,8 +116,11 @@ export type Database = {
           amount: number
           category: string
           created_at: string
+          currency: string
           description: string | null
           id: string
+          original_amount: number | null
+          rate: number
           spent_on: string
           trip_id: string
           user_id: string
@@ -123,8 +129,11 @@ export type Database = {
           amount?: number
           category?: string
           created_at?: string
+          currency?: string
           description?: string | null
           id?: string
+          original_amount?: number | null
+          rate?: number
           spent_on?: string
           trip_id: string
           user_id?: string
@@ -133,8 +142,11 @@ export type Database = {
           amount?: number
           category?: string
           created_at?: string
+          currency?: string
           description?: string | null
           id?: string
+          original_amount?: number | null
+          rate?: number
           spent_on?: string
           trip_id?: string
           user_id?: string
@@ -191,6 +203,7 @@ export type Database = {
         Row: {
           budget: number
           created_at: string
+          currency: string
           destination: string | null
           end_date: string
           id: string
@@ -201,6 +214,7 @@ export type Database = {
         Insert: {
           budget?: number
           created_at?: string
+          currency?: string
           destination?: string | null
           end_date: string
           id?: string
@@ -211,6 +225,7 @@ export type Database = {
         Update: {
           budget?: number
           created_at?: string
+          currency?: string
           destination?: string | null
           end_date?: string
           id?: string
